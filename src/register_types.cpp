@@ -5,6 +5,7 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
+#include "game/debug_overlay/debug_overlay.hpp"
 #include "main/tracker_game.hpp"
 
 using namespace godot;
@@ -15,6 +16,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 		return;
 	}
 	GDREGISTER_CLASS(TrackerGame);
+	GDREGISTER_CLASS(DebugOverlay);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

@@ -30,7 +30,7 @@ Run the following command to download godot-cpp:
 env = SConscript("godot-cpp/SConstruct", {"api_version": 4.7, "env": env, "customs": customs})
 
 env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp") + Glob("src/main/*.cpp")
+sources = Glob("src/*.cpp") + Glob("src/main/*.cpp") + Glob("src/game/debug_overlay/*.cpp")
 objects = []
 
 for source in sources:
