@@ -1,13 +1,11 @@
 # godot-cpp template
-This repository serves as a quickstart template for GDExtension development with Godot 4.0+.
+This repository is a SCons-based Godot GDExtension project for Godot 4.7+.
 
 ## Contents
-* Preconfigured source files for C++ development of the GDExtension ([src/](./src/))
-* An empty Godot project in [project/](./project), to test the GDExtension
+* C++ GDExtension source files in [src/](./src/)
+* A Godot project in [project/](./project) with a C++ main-scene node
 * godot-cpp as a submodule (`godot-cpp/`)
-* GitHub Issues template ([.github/ISSUE_TEMPLATE.yml](./.github/ISSUE_TEMPLATE.yml))
-* GitHub CI/CD workflows to publish your library packages when creating a release ([.github/workflows/builds.yml](./.github/workflows/builds.yml))
-* An SConstruct file with various functions, such as boilerplate for [Adding documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/cpp/gdextension_docs_system.html)
+* SCons build configuration in [SConstruct](./SConstruct)
 
 ## Usage - Template
 
@@ -16,12 +14,8 @@ To use this template, log in to GitHub and click the green "Use this template" b
 To get started with your new GDExtension, do the following:
 
 * clone your repository to your local computer
-* initialize the godot-cpp git submodule via `git submodule update --init`
-* change the name of the compiled library file inside the [SConstruct](./SConstruct) file by modifying the `libname` string.
-  * change the paths of the to be loaded library name inside the [project/bin/example.gdextension](./project/bin/example.gdextension) file, by replacing `EXTENSION-NAME` with the name you chose for `libname`.
-* change the `entry_symbol` string inside [project/bin/example.gdextension](./project/bin/example.gdextension) file.
-  * rename the `example_library_init` function in [src/register_types.cpp](./src/register_types.cpp) to the same name you chose for `entry_symbol`.
-* change the name of the `project/bin/example.gdextension` file
+* initialize the godot-cpp git submodule via `git submodule update --init --recursive`
+* if you rename the extension, keep the `libname` in [SConstruct](./SConstruct), the paths in [tracker.gdextension](./project/bin/tracker.gdextension), and the entry symbol in [register_types.cpp](./src/register_types.cpp) in sync
 
 Now, you can build the project with the following command:
 
@@ -29,7 +23,7 @@ Now, you can build the project with the following command:
 scons
 ```
 
-If the build command worked, you can test it with the [project](./project) project. Import it into Godot, open it, and launch the main scene. You should see it print the following line in the console:
+If the build command worked, open the [project](./project) in Godot and launch the main scene. The scene root is the registered C++ `ExampleClass` node, so the example does not need GDScript. It prints the following line in the Godot output:
 
 ```
 Type: 24
@@ -46,10 +40,14 @@ scons compiledb=yes
 scons compiledb=yes compile_commands.json
 ```
 
+### Running the Godot project from VS Code
+
+Open the repository root in VS Code so both `src/` and `project/` are available. The **Run Godot game** configuration in Run and Debug (and **F5**) first runs **Build GDExtension (SCons)**, then launches the nested Godot project. You can also run the build manually with **Terminal > Run Task > Build GDExtension (SCons)**. Choose **Open Godot project in editor** to open the editor, or **Run Godot project** to launch the game directly. These two tasks start Godot separately, so they finish immediately and can be run again without a task-termination prompt. To print the example output in the VS Code task terminal, choose **Check example output (headless)**. All Godot tasks use the executable configured in `godotTools.editorPath.godot4`.
+
 ## Usage - Actions
 
 This repository comes with continuous integration (CI) through a GitHub action that tests building the GDExtension.
-It triggers automatically for each pushed change. You can find and edit it in [builds.yml](.github/workflows/ci.yml).
+It triggers automatically for each pushed change. You can find and edit it in [ci.yml](.github/workflows/ci.yml).
 
 There is also a workflow ([make_build.yml](.github/workflows/make_build.yml)) that builds the GDExtension for all supported platforms that you can use to create releases.
 You can trigger this workflow manually from the `Actions` tab on GitHub.

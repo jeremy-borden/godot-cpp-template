@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build GDExtension (SCons)",
+            "type": "process",
+            "command": "scons",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Open Godot project in editor",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Start-Process -FilePath '${config:godotTools.editorPath.godot4}' -ArgumentList @('--editor', '--path', ('\"{0}\"' -f '${workspaceFolder}\\project'))"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Godot project",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Start-Process -FilePath '${config:godotTools.editorPath.godot4}' -ArgumentList ('--path \"${workspaceFolder}\\project\"')"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Check example output (headless)",
+            "type": "process",
+            "command": "${config:godotTools.editorPath.godot4}",
+            "args": [
+                "--headless",
+                "--path",
+                "${workspaceFolder}\\project",
+                "--quit-after",
+                "2"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

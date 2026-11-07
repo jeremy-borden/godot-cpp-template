@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Godot game",
+            "type": "godot",
+            "request": "launch",
+            "project": "${workspaceFolder}/project",
+            "scene": "main",
+            "internalConsoleOptions": "openOnSessionStart",
+            "preLaunchTask": "Build GDExtension (SCons)"
+        }
+    ]
+}
