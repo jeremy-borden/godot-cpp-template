@@ -5,7 +5,7 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "main/example_class.hpp"
+#include "main/tracker_game.hpp"
 
 using namespace godot;
 
@@ -14,7 +14,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	GDREGISTER_CLASS(ExampleClass);
+	GDREGISTER_CLASS(TrackerGame);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

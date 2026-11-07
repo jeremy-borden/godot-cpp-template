@@ -4,8 +4,8 @@
 
 using namespace godot;
 
-class ExampleClass : public Node {
-	GDCLASS(ExampleClass, Node)
+class TrackerGame : public Node {
+	GDCLASS(TrackerGame, Node)
 
 protected:
 	static void _bind_methods();

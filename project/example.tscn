@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh0oj81pufivs"]
-
-[ext_resource type="GDExtension" path="res://bin/tracker.gdextension" id="1_extension"]
-
-[node name="ExampleClass" type="ExampleClass"]

@@ -5,7 +5,7 @@ import sys
 from methods import print_error
 
 
-libname = "TRACKEREXT"
+libname = "tracker"
 projectdir = "project"
 
 localEnv = Environment(tools=["default"], PLATFORM="")

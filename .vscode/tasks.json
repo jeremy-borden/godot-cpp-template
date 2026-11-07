@@ -22,7 +22,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Run Godot project",
+            "label": "Run Tracker",
             "type": "process",
             "command": "powershell.exe",
             "args": [
@@ -33,7 +33,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Check example output (headless)",
+            "label": "Run Tracker headless",
             "type": "process",
             "command": "${config:godotTools.editorPath.godot4}",
             "args": [
