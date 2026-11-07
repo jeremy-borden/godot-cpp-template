@@ -31,6 +31,14 @@ env = SConscript("godot-cpp/SConstruct", {"api_version": 4.7, "env": env, "custo
 
 env.Append(CPPPATH=["src/"])
 sources = Glob("src/*.cpp") + Glob("src/main/*.cpp")
+objects = []
+
+for source in sources:
+    object_name = os.path.splitext(os.path.relpath(str(source), "src"))[0]
+    objects.extend(env.Object(
+        target=os.path.join("build", "obj", object_name),
+        source=source,
+    ))
 
 # .dev doesn't inhibit compatibility, so we don't need to key it.
 # .universal just means "compatible with all relevant arches" so we don't need to key it.
@@ -40,7 +48,7 @@ lib_filename = "{}{}{}{}".format(env.subst('$SHLIBPREFIX'), libname, suffix, env
 
 library = env.SharedLibrary(
     "bin/{}/{}".format(env['platform'], lib_filename),
-    source=sources,
+    source=objects,
 )
 
 copy = env.Install("{}/bin/{}/".format(projectdir, env["platform"]), library)
